@@ -3,11 +3,17 @@
         padding: 0px;
     }
     
-    nav {
-        background-color: #000;
+    body {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Roboto', sans-serif;
     }
     
-    .content {
+    nav {
+        background-color: rgba(0, 0, 0, 80%);
+    }
+    
+    .content,
+    nav ul {
         margin: 0 auto;
         width: 900px;
     }
@@ -49,6 +55,7 @@
     
     .content li {
         margin-left: 0.5em;
+        justify-content: center;
     }
     
     .content ul {
