@@ -1,3 +1,88 @@
-header{
+header {
     background-color: #f9f9f9;
+}
+
+#noticias {
+    padding: 3.8em 0;
+}
+
+#noticias .card-title {
+    margin-bottom: 0.4em;
+}
+
+#noticias .card-subtitle {
+    font-size: 0.8em;
+    margin-bottom: 0.6em;
+}
+
+#noticias .card-text {
+    text-align: justify;
+}
+
+#educacional {
+    background-color: #298bcc
+}
+
+#educacional .container {
+    height: 22em;
+    background-image: url('C:/DS1/site01/assets/img/bkg-jumbotron.jpg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    color: #fff;
+}
+
+#educacional .display-4 {
+    padding-top: 1em;
+}
+
+#educacional .lead {
+    max-width: 30em;
+}
+
+#quemsomos {
+    padding: 2em 0;
+    color: #004771;
+}
+
+#quemsomos img {
+    border: 1px solid #004771;
+    border-radius: 0.8em;
+}
+
+footer {
+    background-color: #3f3f3f;
+    padding: 2em 0;
+    color: #fff;
+}
+
+footer .fones h3 {
+    font-size: 1em;
+    font-weight: 100;
+    text-align: center;
+}
+
+footer .fones p {
+    font-size: 0.8em;
+    font-weight: 100;
+    text-align: center;
+    color: #939598;
+}
+
+footer .copyright {
+    margin-top: 1em;
+}
+
+footer .copyright p {
+    font-weight: 100;
+    color: #939598;
+}
+
+footer .copyright a {
+    font-size: 0.63em;
+    color: #939598;
+}
+
+#contato {
+    background-image: url('..//img/bkg-contato.jpg');
+    background-repeat: no-repeat;
 }

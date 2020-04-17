@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <div class="container">
+        <div id="topo" class="container">
 
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#">Faculdade Mater Dei</a>
@@ -27,16 +27,16 @@
                 <div id="menu" class="collapse navbar-collapse justify-content-end">
                     <ul class="navbar-nav">
                         <li class="navitem">
-                            <a class="nav-link" href="#">Quem Somos</a>
+                            <a class="nav-link" href="#quemsomos">Quem Somos</a>
                         </li>
                         <li class="navitem">
-                            <a class="nav-link" href="#">Nossas Soluções</a>
+                            <a class="nav-link" href="#educacional">Nossas Soluções</a>
                         </li>
                         <li class="navitem">
-                            <a class="nav-link" href="#">Notícias</a>
+                            <a class="nav-link" href="#noticias">Notícias</a>
                         </li>
                         <li class="navitem">
-                            <a class="nav-link" href="#">Contato</a>
+                            <a class="nav-link" href="contato.html">Contato</a>
                         </li>
                     </ul>
                 </div>
@@ -73,13 +73,13 @@
 
     </div>
 
-    <div class="container">
+    <div id="noticias" class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
                     <img src="assets/img/noticia1.png" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Lorem, ipsum dolor sit</h5>
+                        <h5 class="card-title">Últimas atualizações</h5>
                         <p class="cad-subtitle text-muted">26 Março de 2020</p>
                         <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                         <a href="#" class="btn btn-outline-dark btn-sm">Saiba Mais</a>
@@ -111,28 +111,28 @@
         </div>
     </div>
 
-    <div class="jumbotron jumbotron-fluid">
+    <div id="educacional" class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Nossa Linha Educacional</h1>
             <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
     </div>
 
-    <div class="container">
+    <div id="quemsomos" class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-md-7">
                 <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
                 <p class="lead">Sapiente, minus temporibus nesciunt consequuntur velit molestias rem repellendus.</p>
             </div>
-            <div class="col">
-                <img src="assets/img/customer.png">
+            <div class="col-md-5">
+                <img src="assets/img/customer.png" class="img-fluid">
             </div>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <div class="row">
+            <div class="fones row">
                 <div class="col-sm-6 col-md-3">
                     <h3 class="text-center">Paraná</h3>
                     <p class="text-center">(46) 9 9999-9999</p>
@@ -150,12 +150,12 @@
                     <p>(51) 9 9999-9999</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="copyright row">
+                <div class="col-md-11 text-center">
                     <p>Faculdade Mater Dei. Todos os direitos reservados &copy; 2020</p>
                 </div>
-                <div class="col">
-                    <a href="#">Voltar ao Topo</a>
+                <div class="col-md-1 text-right">
+                    <a href="#topo">Voltar ao Topo</a>
                 </div>
             </div>
         </div>
