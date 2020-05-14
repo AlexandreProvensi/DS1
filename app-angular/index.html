@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="appJS">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- AngularJS -->
+    <script src="node_modules/angular/angular.min.js"></script>
+
+    <title>App Angular - Backend</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card" ng-controller="ClienteController">
+            <div class="card-header">
+                Cadastro de Clientes
+            </div>
+            <div class="card-body">
+
+                <div class="alert alert-danger text-center" ng-if="msgerro">
+                    {{ msgerro }}
+                </div>
+
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nome Completo</th>
+                            <th>E-mail</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--
+                            ng-repeat faz o que o bloco abaixo faria em Jsvascript (ou java)
+                            
+                            for (var n = 0; n < clientes.length; n++) {
+                                var cliente = clientes[n];
+                            }
+                        -->
+                        <tr ng-repeat="cliente in clientes">
+                            <td>{{ cliente.id }}</td>
+                            <td>{{ cliente.nome }}</td>
+                            <td>{{ cliente.email }}</td>
+                            <td>{{ cliente.cidade }}</td>
+                            <td>{{ cliente.estado }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {{ clientes }}
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrega JS da Aplicação -->
+    <script src="app.js"></script>
+
+    <!-- Carrega Service's da Aplicação-->
+    <script src="app/service/cliente.service.js"></script>
+
+    <!-- Carrega Controller's da Aplicação -->
+    <script src="app/controller/cliente.controller.js"></script>
+
+
+</body>
+
+</html>
