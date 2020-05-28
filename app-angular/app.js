@@ -1,1 +1,1 @@
-const appJS = angular.module('appJS', []);
+const appJS = angular.module('appJS', ['ngStorage']);

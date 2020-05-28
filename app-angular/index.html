@@ -8,8 +8,15 @@
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+
     <!-- AngularJS -->
     <script src="node_modules/angular/angular.min.js"></script>
+
+    <!-- Modulos do AngularJS -->
+    <script src="node_modules/ngstorage/ngStorage.min.js"></script>
+
 
     <title>App Angular - Backend</title>
 </head>
@@ -19,44 +26,94 @@
     <div class="container">
         <div class="card" ng-controller="ClienteController">
             <div class="card-header">
-                Cadastro de Clientes
+                Cadastro de clientes
+                <span class="spacer"></span>
+                <button class="btn btn-dark btn-sm" ng-click="novo()" ng-show="showTable">Novo</button>
             </div>
+
             <div class="card-body">
 
                 <div class="alert alert-danger text-center" ng-if="msgerro">
                     {{ msgerro }}
                 </div>
 
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Nome Completo</th>
-                            <th>E-mail</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--
-                            ng-repeat faz o que o bloco abaixo faria em Jsvascript (ou java)
-                            
-                            for (var n = 0; n < clientes.length; n++) {
-                                var cliente = clientes[n];
-                            }
-                        -->
-                        <tr ng-repeat="cliente in clientes">
-                            <td>{{ cliente.id }}</td>
-                            <td>{{ cliente.nome }}</td>
-                            <td>{{ cliente.email }}</td>
-                            <td>{{ cliente.cidade }}</td>
-                            <td>{{ cliente.estado }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div ng-if="showTable">
+                    <input type="text" class="form-control form-control-lg" placeholder="Filtrar" ng-model="textFilter">
 
-                {{ clientes }}
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>
+                                    <button class="btn btn-link" ng-class="{'active': selectedColumn == 'id'}" ng-click="setColumn('id')">Código</button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-link" ng-class="{'active': selectedColumn == 'nome'}" ng-click="setColumn('nome')">Nome Completo</button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-link" ng-class="{'active': selectedColumn == 'email'}" ng-click="setColumn('email')">E-mail</button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-link" ng-class="{'active': selectedColumn == 'cidade'}" ng-click="setColumn('cidade')">Cidade</button>
+                                </th>
+                                <th colspan="2">
+                                    <button class="btn btn-link" ng-class="{'active': selectedColumn == 'estado'}" ng-click="setColumn('estado')">Estado</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody ng-if="clientes.length == 0">
+                            <tr>
+                                <td colspan="6">
+                                    <p class="lead text-center text-muted">Nenhum cliente foi cadastrado</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-if="clientes.length > 0">
+                            <!--
+                                ng-repeat faz o que o bloco abaixo faria em Jsvascript (ou java)
+                                
+                                for (var n = 0; n < clientes.length; n++) {
+                                    var cliente = clientes[n];
+                                }
+                            -->
+                            <tr ng-repeat="cliente in clientes | filter: filter() | orderBy: selectedColumn:decrescente">
+                                <td>{{ cliente.id }}</td>
+                                <td>{{ cliente.nome }}</td>
+                                <td>{{ cliente.email }}</td>
+                                <td>{{ cliente.cidade }}</td>
+                                <td>{{ cliente.estado }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-warning" ng-click="editar(cliente)">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
+                <div ng-if="!showTable">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" class="form-control" placeholder="Informe o nome completo" ng-model="cliente.nome">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" placeholder="Informe o e-mail" ng-model="cliente.email">
+                    </div>
+                    <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control" placeholder="Informe a cidade" ng-model="cliente.cidade">
+                    </div>
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <input type="text" class="form-control" placeholder="Informe o estado" ng-model="cliente.estado">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer" ng-if="!showTable">
+                <button class="btn btn-danger" ng-click="excluir()">EXCLUIR</button>
+                <span class="spacer"></span>
+                <button class="btn btn-light" ng-click="cancelar()">CANCELAR</button>
+                <button class="btn btn-success" ng-click="salvar()">SALVAR</button>
             </div>
         </div>
     </div>
