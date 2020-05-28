@@ -11,7 +11,9 @@
     "license": "ISC",
     "dependencies": {
         "angular": "^1.7.9",
+        "angular-route": "^1.7.9",
         "bootstrap": "^4.4.1",
+        "jquery": "^3.5.1",
         "ngstorage": "^0.3.11"
     }
 }

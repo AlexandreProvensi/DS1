@@ -1,48 +1,48 @@
 (function(app) {
     'use strict';
 
-    app.service('ClienteService', function($q, $localStorage) {
+    app.service('EstadoService', function($q, $localStorage) {
         const deferred = $q.defer();
 
         function loadJSON() {
-            deferred.resolve({ data: $localStorage.clientes || [] });
+            deferred.resolve({ data: $localStorage.estados || [] });
 
             return deferred.promise;
         }
 
-        function save(cliente) {
-            var dados = $localStorage.clientes || [];
+        function save(estado) {
+            var dados = $localStorage.estados || [];
 
-            if (!cliente.id) {
+            if (!estado.id) {
                 //Pega o ultimo registro
                 var ultimo = dados[dados.length - 1];
 
                 //Incrementa o valor de ID o ultimo registro
-                cliente.id = ultimo ? ultimo.id + 1 : 1;
+                estado.id = ultimo ? ultimo.id + 1 : 1;
 
-                //Adiciona o cliente no vetor
-                dados.push(cliente);
+                //Adiciona o estado no vetor
+                dados.push(estado);
 
                 //Devolve o vetor para o localstorage
-                $localStorage.clientes = dados;
+                $localStorage.estados = dados;
             }
 
-            deferred.resolve(cliente);
+            deferred.resolve(estado);
 
             return deferred.promise;
         }
 
-        function remove(cliente) {
-            var dados = $localStorage.clientes;
+        function remove(estado) {
+            var dados = $localStorage.estados;
 
-            //Procura o index do cliente que está vindo por parametro
-            var index = dados.indexOf(cliente);
+            //Procura o index do estado que está vindo por parametro
+            var index = dados.indexOf(estado);
 
             //Remove a partir do indice uma qtdade de elementos, no caso 1
             dados.splice(index, 1)
 
             //Atualioza local storage
-            $localStorage.clientes = dados;
+            $localStorage.estados = dados;
 
             deferred.resolve({ data: dados });
             return deferred.promise;

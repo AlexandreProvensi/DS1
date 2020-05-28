@@ -1,7 +1,7 @@
 (function(app) {
     'use strict';
 
-    app.controller('ClienteController', function($scope, ClienteService) {
+    app.controller('EstadoController', function($scope, EstadoService) {
         //Controle para OrderBy e Filter
         $scope.decrescente = false;
         $scope.selectedColumn = 'id';
@@ -28,12 +28,9 @@
 
         //Prepara a tela para um novo cadastro
         $scope.novo = function() {
-            //Representar o cliente atual
-            $scope.cliente = {
-                nome: '',
-                email: '',
-                cidade: '',
-                estado: ''
+            //Representar o estado atual
+            $scope.estado = {
+                nome: ''
             }
 
             $scope.showTable = false;
@@ -44,30 +41,30 @@
             $scope.showTable = true;
         }
 
-        //Salvar a inclusão/edição do cliente
+        //Salvar a inclusão/edição do estado
         $scope.salvar = function() {
-            ClienteService.salvar($scope.cliente).then(function(result) {
+            EstadoService.salvar($scope.estado).then(function(result) {
                 $scope.showTable = true;
             });
 
         }
 
-        //Editar o cliente selecionado
-        $scope.editar = function(cliente) {
-            $scope.cliente = cliente;
+        //Editar o estado selecionado
+        $scope.editar = function(estado) {
+            $scope.estado = estado;
             $scope.showTable = false;
         }
 
-        //Excluir o cliente selecionado
+        //Excluir o estado selecionado
         $scope.excluir = function() {
-            ClienteService.remover($scope.cliente).then(function(result) {
+            EstadoService.remover($scope.estado).then(function(result) {
                 $scope.showTable = true;
             });
         }
 
-        //Carrega uma lista de clientes
-        ClienteService.listar().then(function(result) {
-            $scope.clientes = result.data;
+        //Carrega uma lista de estados
+        EstadoService.listar().then(function(result) {
+            $scope.estados = result.data;
         });
 
     });
