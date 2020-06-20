@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="appJS">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--CSS Bootstrap CSS-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!--CSS Customizado-->
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!--Jquery-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!--Angular JS-->
+    <script src="node_modules/angular/angular.min.js"></script>
+
+    <!-- Modulos do AngularJS-->
+    <script src="node_modules/ngstorage/ngStorage.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+
+    <title>App Angular - Backend</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card" ng-controller="ClienteController">
+            <div class="card-header">
+                Cadastro de Clientes
+                <span class="spacer"></span>
+                <button class="btn btn-dark btn-sm" ng-click="novo()" ng-show="showTable">Novo</button>
+            </div>
+            <div class="card-body ">
+
+                <div class="alert alert-danger text-center " ng-if="msgerro ">
+                    {{msgerro}}
+                </div>
+
+                <div ng-if="showTable ">
+                    <input type="text " class="form-control form-control-lg " placeholder="Filtrar " ng-model="textFilter ">
+
+
+
+                    <table class="table table-bordered table-striped ">
+                        <thead class="thead-dark ">
+                            <tr>
+                                <th>
+                                    <button class="btn btn-link " ng-class="{ 'active': selectedColumn=='id' } " ng-click="setColumn( 'id') ">Código</button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-link " ng-class="{ 'active': selectedColumn=='nome' } " ng-click="setColumn( 'nome') ">Nome Completo</button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-link " ng-class="{ 'active': selectedColumn=='email' } " ng-click="setColumn( 'email') ">E-mail</button>
+                                </th>
+                                <th>
+                                    <button class="btn btn-link " ng-class="{ 'active': selectedColumn=='cidade' } " ng-click="setColumn( 'cidade') ">Cidade</button>
+                                </th>
+                                <th colspan="2">
+                                    <button class="btn btn-link " ng-class="{ 'active': selectedColumn=='estado' } " ng-click="setColumn( 'estado') ">Estado</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody ng-if="clientes.length == 0">
+                            <th>
+                                <td colspan="6">
+                                    <p class="lead text-center text-muted">Nenhum cliente foi cadastrado</p>
+                                </td>
+                            </th>
+                        </tbody>
+                        <tbody ng-if="clientes.length > 0">
+                            <!--
+                            ng-repeat faz o que o bloco abaixo faria em JS (ou Java)
+
+                        for (var n= 0; n < clientes.length; n++){
+                            var cliente = clientes[n];
+                        }
+                        -->
+                            <tr ng-repeat=" cliente in clientes | filter:filter() | orderBy: selectedColumn:decrescente ">
+                                <td>{{cliente.id}}</td>
+                                <td>{{cliente.nome}}</td>
+                                <td>{{cliente.email}}</td>
+                                <td>{{cliente.cidade}}</td>
+                                <td>{{cliente.estado}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-warning" ng-click="editar(cliente)">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div ng-if="!showTable ">
+                    <div class="form-group ">
+                        <label>Nome Completo</label>
+                        <input type="text " class="form-control " placeholder="Informe o nome completo " ng-model="cliente.nome ">
+                    </div>
+                    <div class="form-group ">
+                        <label>E-mail</label>
+                        <input type="email " class="form-control " placeholder="Informe o e-mail " ng-model="cliente.email ">
+                    </div>
+                    <div class="form-group ">
+                        <label>Cidade</label>
+                        <input type="text " class="form-control " placeholder="Informe a cidade " ng-model="cliente.cidade ">
+                    </div>
+                    <div class="form-group ">
+                        <label>Estado</label>
+                        <input type="text " class="form-control " placeholder="Informe o estado " ng-model="cliente.estado ">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer " ng-if="!showTable ">
+                <button class="btn btn-danger " ng-if="cliente.id" data-toggle="modal" data-target="#confirmModal">EXCLUIR</button>
+                <span class="spacer "></span>
+                <button class="btn btn-light " ng-click="cancelar() ">CANCELAR</button>
+                <button class="btn btn-success " ng-click="salvar() ">SALVAR</button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirmModal" data-keyboard="false" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmar exclusão</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                        </div>
+                        <div class="modal-body">
+                            Deseja realmente excluir este registro?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">CANCELAR</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="excluir()">CONFIRMAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--Carrega JS da aplicação-->
+    <script src="app.js "></script>
+
+    <!--Carrega Service's da Aplicação-->
+    <script src="app/service/estado.service.js "></script>
+    <script src="app/service/cliente.service.js "></script>
+
+    <!--Carrega controller's da Aplicação-->
+    <script src="app/controller/estado.controller.js "></script>
+    <script src="app/controller/cliente.controller.js "></script>
+
+
+</body>
+
+</html>
