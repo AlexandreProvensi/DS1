@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="appJS">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Jquery -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="node_modules/angular/angular.min.js"></script>
+
+    <!-- Modulos do AngularJS -->
+    <script src="node_modules/ngstorage/ngStorage.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+
+
+    <title>App Angular - Backend</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div ng-view></div>
+    </div>
+
+    <!-- Carrega JS da Aplicação -->
+    <script src="app.js"></script>
+
+    <!-- Carrega Service's da Aplicação-->
+    <script src="app/service/estado.service.js"></script>
+    <script src="app/service/cliente.service.js"></script>
+
+    <!-- Carrega Controller's da Aplicação -->
+    <script src="app/controller/estado.controller.js"></script>
+    <script src="app/controller/cliente.controller.js"></script>
+
+
+</body>
+
+</html>

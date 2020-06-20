@@ -1,9 +1,9 @@
 .table {
-    margin-top: 20px;
+    margin-top 20px;
 }
 
 thead .btn-link {
-    color: #fff;
+    color: #fff
 }
 
 thead .btn-link:hover {
@@ -15,11 +15,14 @@ thead .active {
     font-weight: bold;
 }
 
-.card-header,
-.card-footer {
+.card-header {
     display: flex;
 }
 
 .spacer {
     flex: 1 1 auto;
+}
+
+.card-footer {
+    display: flex;
 }
