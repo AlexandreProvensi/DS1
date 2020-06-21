@@ -5,55 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--CSS Bootstrap CSS-->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-    <!--CSS Customizado-->
+    <!-- CSS Customizado -->
     <link rel="stylesheet" href="assets/css/custom.css">
 
-    <!--Jquery-->
+    <!-- Jquery -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
-    <!--Bootstrap JS-->
+    <!-- Bootstrap JS -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!--Angular JS-->
+    <!-- AngularJS -->
     <script src="node_modules/angular/angular.min.js"></script>
 
-    <!-- Modulos do AngularJS-->
+    <!-- Modulos do AngularJS -->
     <script src="node_modules/ngstorage/ngStorage.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
+
 
     <title>App Angular - Backend</title>
 </head>
 
 <body>
-
-    <div class="container">
-        <nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="collapse navbar-collapse">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <div class="container">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://127.0.0.1:5500/#!/clientes">Clientes</a>
+                    <li class="nav-item" ng-class="{'active': menuAtivo == 'clientes'}">
+                        <a class="nav-link" href="#!/clientes">Clientes</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://127.0.0.1:5500/#!/estados">Estados</a>
+                    <li class="nav-item" ng-class="{'active': menuAtivo == 'estados'}">
+                        <a class="nav-link" href="#!/estados">Estado</a>
                     </li>
                 </ul>
-        </nav>
-        <div ng-view></div>
+            </div>
         </div>
+    </nav>
 
-        <!--Carrega JS da aplicação-->
-        <script src="app.js "></script>
+    <div class="container conteudo">
+        <div ng-view></div>
+    </div>
 
-        <!--Carrega Service's da Aplicação-->
-        <script src="app/service/estado.service.js "></script>
-        <script src="app/service/cliente.service.js "></script>
+    <!-- Carrega JS da Aplicação -->
+    <script src="app.js"></script>
 
-        <!--Carrega controller's da Aplicação-->
-        <script src="app/controller/estado.controller.js "></script>
-        <script src="app/controller/cliente.controller.js "></script>
+    <!-- Carrega Service's da Aplicação-->
+    <script src="app/service/sign.service.js"></script>
+    <script src="app/service/estado.service.js"></script>
+    <script src="app/service/cliente.service.js"></script>
+
+    <!-- Carrega Controller's da Aplicação -->
+    <script src="app/controller/sign.controller.js"></script>
+    <script src="app/controller/estado.controller.js"></script>
+    <script src="app/controller/cliente.controller.js"></script>
 
 
 </body>
